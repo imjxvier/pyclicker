@@ -1,12 +1,14 @@
-import keyboard, pyautogui
+import keyboard
+import pyautogui
 
-on, off = 0, 1
+on, off = False, True
 
 print('\nWelcome to pyclicker!')
 
 while True:
     try:
-        cps = int(input('\nTell me how many CPS you wanna get. 1 = 10, 2 = 20, 3 = 30, 4 = 40 and like that: '))
+        cps = int(input(
+            '\nHow many CPS you wanna get? 1 = 10, 2 = 20, 3 = 30, (...): '))
     except ValueError:
         print('Invalid input. Your input needs to be a number.')
     except KeyboardInterrupt:
@@ -15,15 +17,15 @@ while True:
     else:
         break
 
-print('\npyclicker\nF1 = ON\nF2 = OFF\nF = Start clicking (When ON)\nCTRL+C = Quit')
+print('\npyclicker\nF1: ON\nF: Start clicking\nF2: OFF\nCTRL+C: Quit')
 
 try:
     while True:
         if keyboard.is_pressed('F1'):
-            on, off = 1, 0
+            on, off = True, False
         if keyboard.is_pressed('F2'):
-            on, off = 0, 1
-        if keyboard.is_pressed('F') and on == 1:
+            on, off = False, True
+        if keyboard.is_pressed('F') and on:
             pyautogui.click(button='left', clicks=cps)
         if keyboard.is_pressed('ctrl+c'):
             print('Goodbye!')
